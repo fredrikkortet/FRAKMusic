@@ -3,9 +3,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * <h1>Main.java</h1>
+ * <h1>Player.java</h1>
  * <p>
- * Frs
+ * This class will make the layout and run all the method we will add.
  * </p>
  * 
  * @author Andre Frisk, Fredrik Kortetjarvi, Kristoffer Guachalla, Rohullah
@@ -67,6 +67,7 @@ public class Player {
         // label = new JLabel("FRAKMusic player");
 
         searchBox = new JTextArea();
+        searchBox.setColumns(20);
         search = new JButton("Search");
         search.addActionListener(new ActionListener() {
 
