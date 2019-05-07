@@ -27,7 +27,10 @@ public class Player {
 
     public void gui() {
         frame = new JFrame("FRAKMusic");
+<<<<<<< HEAD
 
+=======
+>>>>>>> 94832635f19b230249c1ca3d06e33bbed57178df
         frame.setResizable(true);
         frame.setMinimumSize(screenSize);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -117,12 +120,16 @@ public class Player {
         frame.add(background);
         frame.add(panelSearch, BorderLayout.NORTH);
         frame.add(panelButtons, BorderLayout.SOUTH);
+<<<<<<< HEAD
         frame.add(panelList, BorderLayout.WEST);
+=======
+>>>>>>> 94832635f19b230249c1ca3d06e33bbed57178df
         frame.setVisible(true);
     }
 
     public static void main(String[] args) {
         new Player();
+
     }
 
     /**
