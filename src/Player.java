@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 
 /**
  * <h1>Player.java</h1>
@@ -14,12 +15,11 @@ import java.awt.event.*;
  */
 public class Player {
     private JFrame frame;
-    private JPanel panelButtons, panelSearch, background;
-    private JTextArea searchBox;
-    private JButton play, pause, next, queue, search;
-    // private JLabel label;
-
+    private JPanel panelButtons, panelSearch, panelList, background;
+    private JTextArea searchBox, musicList;
+    private JButton play, pause, next, queue, search, add;
     final Dimension screenSize = new Dimension(600, 400);
+    final static File folder = new File("/home/fredrik/eclipse-workspace/FRAKMusic/Music");
 
     public Player() {
         gui();
@@ -27,9 +27,8 @@ public class Player {
 
     public void gui() {
         frame = new JFrame("FRAKMusic");
-        frame.setVisible(true);
+
         frame.setResizable(true);
-        frame.setSize(600, 400);
         frame.setMinimumSize(screenSize);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -39,6 +38,8 @@ public class Player {
         panelSearch.setBackground(Color.DARK_GRAY);
         background = new JPanel(new GridBagLayout());
         background.setBackground(Color.DARK_GRAY);
+        panelList = new JPanel(new GridBagLayout());
+        panelList.setBackground(Color.DARK_GRAY);
 
         play = new JButton("Play");
         play.addActionListener(new ActionListener() {
@@ -75,6 +76,18 @@ public class Player {
                 // TODO here is your method
             }
         });
+
+        musicList = new JTextArea();
+        musicList.setColumns(30);
+        musicList.setRows(6);
+        add = new JButton("add");
+        add.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent args) {
+                adding(folder);
+            }
+        });
+
         GridBagConstraints arrange = new GridBagConstraints();
 
         arrange.insets = new Insets(10, 10, 10, 10);
@@ -92,19 +105,40 @@ public class Player {
         arrange.gridx = 10;
         panelButtons.add(queue, arrange);
 
-        // panelSearch.add(label);
         arrange.gridx = 1;
         panelSearch.add(searchBox, arrange);
+
         arrange.gridx = 2;
         panelSearch.add(search, arrange);
+
+        panelList.add(add);
+        panelList.add(musicList);
 
         frame.add(background);
         frame.add(panelSearch, BorderLayout.NORTH);
         frame.add(panelButtons, BorderLayout.SOUTH);
-
+        frame.add(panelList, BorderLayout.WEST);
+        frame.setVisible(true);
     }
 
     public static void main(String[] args) {
         new Player();
+    }
+
+    /**
+     * 
+     */
+    public void adding(final File source) {
+        final File[] listOfFiles = source.listFiles();
+
+        for (File file : listOfFiles) {
+            if (file.isDirectory()) {
+                adding(file);
+            } else {
+                musicList.insert(file.getName(), 3);
+                System.out.print(file.getName());
+
+            }
+        }
     }
 }
