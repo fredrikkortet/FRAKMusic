@@ -13,24 +13,26 @@ import java.io.File;
  *         Khorami
  * @version 1.0
  */
-public class Player {
+public class Player {   
     private JFrame frame;
     private JPanel panelButtons, panelSearch, panelList, background;
     private JTextArea searchBox, musicList;
     private JButton play, pause, next, queue, search, add;
     final Dimension screenSize = new Dimension(600, 400);
-    final static File folder = new File("/home/fredrik/eclipse-workspace/FRAKMusic/Music");
+    final static File folder = new File("/home/fredrik/FRAKMusic/Music");
 
     public Player() {
-        gui();
+        gui(); //start gui
     }
 
     public void gui() {
+        //fix the frame how big name
         frame = new JFrame("FRAKMusic");
         frame.setResizable(true);
         frame.setMinimumSize(screenSize);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        //create the panels with color and gridlayout
         panelButtons = new JPanel(new GridBagLayout());
         panelButtons.setBackground(Color.DARK_GRAY);
         panelSearch = new JPanel(new GridBagLayout());
@@ -40,6 +42,7 @@ public class Player {
         panelList = new JPanel(new GridBagLayout());
         panelList.setBackground(Color.DARK_GRAY);
 
+        //creat the buttons labels textfields
         play = new JButton("Play");
         play.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -86,8 +89,8 @@ public class Player {
                 adding(folder);
             }
         });
-
-        GridBagConstraints arrange = new GridBagConstraints();
+        // add it to the panel like buttons labels textfields  
+        GridBagConstraints arrange = new GridBagConstraints(); // create the grids 
 
         arrange.insets = new Insets(10, 10, 10, 10);
 
@@ -113,6 +116,7 @@ public class Player {
         panelList.add(add);
         panelList.add(musicList);
 
+        //here it adds panel to the frame 
         frame.add(background);
         frame.add(panelSearch, BorderLayout.NORTH);
         frame.add(panelButtons, BorderLayout.SOUTH);
@@ -121,12 +125,13 @@ public class Player {
     }
 
     public static void main(String[] args) {
-        new Player();
+        new Player(); // start player
 
     }
 
     /**
-     * 
+     * add the music into the program
+     * @params source is the map all the music is in.
      */
     public void adding(final File source) {
         final File[] listOfFiles = source.listFiles();
@@ -135,8 +140,8 @@ public class Player {
             if (file.isDirectory()) {
                 adding(file);
             } else {
-                musicList.insert(file.getName(), 3);
-                System.out.print(file.getName());
+                musicList.append(file.getName()+"\n");
+                file.getName();
 
             }
         }
