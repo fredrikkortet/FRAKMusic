@@ -4,7 +4,7 @@ X = Done
 Make a playlist
 autoplay
 add music // fredrik 
-play music 
-stop music
+play music --
+stop music -- 
 next music // Andre
 queue // Andre
