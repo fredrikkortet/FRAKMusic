@@ -146,4 +146,13 @@ public class Player {
             }
         }
     }
+    /**
+     * Next song to be played
+     */
+    public void nextToPlay() {
+
+    }
+    public void queueSong(File song) {
+    	addedList.enqueue(song);
+    }
 }
