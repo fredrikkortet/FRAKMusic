@@ -147,18 +147,4 @@ public class Player {
             }
         }
     }
-    /**
-     * Next song to be played
-     */
-    public void nextToPlay() {
-    	addedList.remove();
-    	addedList.play();
-    }
-    /**
-     * Queue a song 
-     * @param song; the song to be queued
-     */
-    public void queueSong(File song) {
-    	addedList.add(song);
-    }
 }
