@@ -38,7 +38,7 @@ public class Player extends javax.swing.JFrame {
         private javax.swing.JLabel playButton;
         private javax.swing.JProgressBar progressBar;
         private javax.swing.JScrollPane queueList;
-        private javax.swing.JTextPane queueListBox;
+        private javax.swing.JTextArea queueListBox;
         private javax.swing.JPanel queuePanel;
         private javax.swing.JButton searchButton;
         private javax.swing.JTextField searchField;
@@ -80,7 +80,7 @@ public class Player extends javax.swing.JFrame {
                 sortSongButton = new javax.swing.JButton();
                 queuePanel = new javax.swing.JPanel();
                 queueList = new javax.swing.JScrollPane();
-                queueListBox = new javax.swing.JTextPane();
+                queueListBox = new javax.swing.JTextArea();
                 jLabel10 = new javax.swing.JLabel();
                 jPanel18 = new javax.swing.JPanel();
                 searchField = new javax.swing.JTextField();
@@ -502,7 +502,6 @@ public class Player extends javax.swing.JFrame {
         }
 
         private void addButtonMouseClicked(java.awt.event.MouseEvent evt) {
-                // TODO add your handling code here:
                 adding(folder);
         }
 
@@ -532,7 +531,9 @@ public class Player extends javax.swing.JFrame {
         }
 
         /**
+         * add the music into the program
          * 
+         * @params source is the map all the music is in.
          */
         public void adding(final File source) {
                 final File[] listOfFiles = source.listFiles();
