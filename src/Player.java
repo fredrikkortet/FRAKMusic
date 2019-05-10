@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import jaco.mp3.player.MP3Player;
 
 /**
  * <h1>Player.java</h1>
@@ -14,7 +13,7 @@ import jaco.mp3.player.MP3Player;
  *         Khorami
  * @version 1.0
  */
-public class Player {   
+public class Player {
     private JFrame frame;
     private JPanel panelButtons, panelSearch, panelList, background;
     private JTextArea searchBox, musicList;
@@ -23,17 +22,17 @@ public class Player {
     final static File folder = new File("/home/fredrik/FRAKMusic/Music");
 
     public Player() {
-        gui(); //start gui
+        gui(); // start gui
     }
 
     public void gui() {
-        //fix the frame how big name
+        // fix the frame how big name
         frame = new JFrame("FRAKMusic");
         frame.setResizable(true);
         frame.setMinimumSize(screenSize);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //create the panels with color and gridlayout
+        // create the panels with color and gridlayout
         panelButtons = new JPanel(new GridBagLayout());
         panelButtons.setBackground(Color.DARK_GRAY);
         panelSearch = new JPanel(new GridBagLayout());
@@ -43,7 +42,7 @@ public class Player {
         panelList = new JPanel(new GridBagLayout());
         panelList.setBackground(Color.DARK_GRAY);
 
-        //creat the buttons labels textfields
+        // creat the buttons labels textfields
         play = new JButton("Play");
         play.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -90,8 +89,8 @@ public class Player {
                 adding(folder);
             }
         });
-        // add it to the panel like buttons labels textfields  
-        GridBagConstraints arrange = new GridBagConstraints(); // create the grids 
+        // add it to the panel like buttons labels textfields
+        GridBagConstraints arrange = new GridBagConstraints(); // create the grids
 
         arrange.insets = new Insets(10, 10, 10, 10);
 
@@ -117,7 +116,7 @@ public class Player {
         panelList.add(add);
         panelList.add(musicList);
 
-        //here it adds panel to the frame 
+        // here it adds panel to the frame
         frame.add(background);
         frame.add(panelSearch, BorderLayout.NORTH);
         frame.add(panelButtons, BorderLayout.SOUTH);
@@ -132,6 +131,7 @@ public class Player {
 
     /**
      * add the music into the program
+     * 
      * @params source is the map all the music is in.
      */
     public void adding(final File source) {
@@ -141,10 +141,14 @@ public class Player {
             if (file.isDirectory()) {
                 adding(file);
             } else {
-                musicList.append(file.getName()+"\n");
+                musicList.append(file.getName() + "\n");
                 file.getName();
 
             }
         }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 }
