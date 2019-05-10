@@ -1,15 +1,17 @@
+import java.io.File;
 
 public class PlayerItem {
 	private String name;
 	private String artist;
 	private String filename;
-	private int time;
+	private String time;
+	private Mp3info DJ;
 	
-	public PlayerItem(String theName, String theArtist, String theFilename, int theTime) {
-		name = theName;
-		artist = theArtist;
-		filename = theFilename;
-		time = theTime;
+	public PlayerItem(File file) {
+		name = DJ.getName(file);
+		artist = DJ.getArtist(file);
+		filename = file.getName();
+		time = DJ.getDuration(file);
 	}
 
 	public String getName() {

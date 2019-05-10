@@ -12,20 +12,17 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class PlayerMethod {
     /**
-     * Next song to be played
+     * Next song to be played with buttonpress
      */
-    public void nextToPlay() {
-        addedList.remove();
-        addedList.play();
+    public void next() {
+        playlist.remove();
+        playlist.play();
     }
-
     /**
      * Queue a song
-     * 
      * @param song; the song to be queued
      */
     public void queueSong(File song) {
-        addedList.add(song);
+        playlist.add(song);
     }
-
 }
