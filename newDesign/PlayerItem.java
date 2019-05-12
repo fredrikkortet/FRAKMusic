@@ -1,17 +1,22 @@
-import java.io.File;
+//import java.io.File;
+import javax.sound.sampled.*;
+import java.io.*;
+import java.util.*;
 
 public class PlayerItem {
 	private String name;
 	private String artist;
 	private String filename;
 	private String time;
-	private Mp3info DJ;
 	
 	public PlayerItem(File file) {
-		name = DJ.getName(file);
-		artist = DJ.getArtist(file);
 		filename = file.getName();
-		time = DJ.getDuration(file);
+		String[] getSongorAuthor = {"0","0"};
+		getSongorAuthor = filename.split("-");
+		artist = getSongorAuthor[0];
+		name = getSongorAuthor[1];
+		time = getDuration(file);
+
 	}
 
 	public String getName() {
@@ -26,7 +31,7 @@ public class PlayerItem {
 		return filename;
 	}
 
-	public int getTime() {
+	public String getTime() {
 		return time;
 	}
 	
@@ -42,7 +47,7 @@ public class PlayerItem {
 		return filename.compareTo(other);
 	}
 	    
-	public int compareTime(int other) {
+	/*public int compareTime(int other) {
 		if(time > other) {
 			return 1;
 		}
@@ -52,5 +57,27 @@ public class PlayerItem {
 		else {
 			return 0;
 		}
+	}*/
+	private static String getDuration(File file){
+		try{
+		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+		AudioFormat format = audioInputStream.getFormat();
+		long frames = audioInputStream.getFrameLength();
+		double durationInSeconds = (frames+0.0) / format.getFrameRate(); 
+		int durationInSeconds2 = (int)durationInSeconds;
+		String sec = durationInSeconds2/60.0 +"";
+		
+		return sec; 
+		}catch(UnsupportedAudioFileException e){
+			 e.fillInStackTrace();
+			 return null;
+		}catch(IOException e){
+			 e.fillInStackTrace();
+			 return null;
+		}
+	
 	}
+	
+	
 }
+

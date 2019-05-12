@@ -47,7 +47,8 @@ public class Player extends javax.swing.JFrame {
         private javax.swing.JButton sortSongButton;
         private javax.swing.JLabel stopButton;
         final static File folder = new File("/home/fredrik/FRAKMusic/Music");
-        HashFunc addedList = new HashFunc();
+        private HashFunc addedList = new HashFunc();
+        private PlayerItem musicItem;
 
         public Player() {
                 gui();
@@ -543,8 +544,11 @@ public class Player extends javax.swing.JFrame {
                         if (file.isDirectory()) {
                                 adding(file);
                         } else {
-                                musicListBox.append(file.getName() + "\n");
-                               addedList.add();
+                                
+                                musicItem = new PlayerItem(file);
+                                musicListBox.append(musicItem.getArtist()+" "+ musicItem.getName()+" "+musicItem.getTime()+ "\n");
+                                
+                                //addedList.add();
 
                         }
                 }
