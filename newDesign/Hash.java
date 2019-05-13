@@ -1,9 +1,9 @@
 
-public class Hash<AnyType>{
+public class Hash<PlayerItem>{
     private static final int defaultSize = 53;
-   private HashEntry[] array;
-   private int currentSize = 0;
-   private int stockInSize = 0;
+    private HashEntry[] array;
+    private int currentSize = 0;
+    private int stockInSize = 0;
 
     public Hash(){
         array = new HashEntry[defaultSize];
@@ -11,11 +11,11 @@ public class Hash<AnyType>{
     public int size(){
         return currentSize;
     }
-    public AnyType findMatch(AnyType x){
+    public PlayerItem findMatch(String x){
         int currentPos = findPos(x);
 
         if(isActive(array, currentPos)){
-            return (AnyType) array[currentPos];
+            return (PlayerItem) array[currentPos];
         }
         return null;
     }
@@ -25,10 +25,10 @@ public class Hash<AnyType>{
     private static boolean isActive(HashEntry[]arr, int pos){
         return arr[pos] != null && arr[pos].isActive;
     }
-    public String add(AnyType value){
+    public PlayerItem add(PlayerItem value){
         int currentPos = findPos(value);
         if(isActive(array, currentPos)){
-            return "false";
+            return null;
         }
         if(array[currentPos]==null){
             stockInSize++;
@@ -39,7 +39,7 @@ public class Hash<AnyType>{
         if (stockInSize > array.length/2){
             rehash();
         }
-        return  (String) value;
+        return value;
          
         
     }
@@ -52,7 +52,7 @@ public class Hash<AnyType>{
         
         for(int i=0;i<oldarray.length;i++){
             if(isActive(oldarray,i)){
-                add((AnyType) oldarray[i].element);
+                add((PlayerItem) oldarray[i].element);
             }
         }
     }

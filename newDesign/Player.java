@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
+import javax.sound.sampled.*;
+import java.io.*;
+import java.util.*;
 
 /**
  * <h1>Player.java</h1>
@@ -47,8 +49,10 @@ public class Player extends javax.swing.JFrame {
         private javax.swing.JButton sortSongButton;
         private javax.swing.JLabel stopButton;
         final static File folder = new File("/home/fredrik/FRAKMusic/Music");
-        private HashFunc addedList = new HashFunc();
+        private Hash addedList = new Hash();
         private PlayerItem musicItem;
+        private ArrayQueue<PlayerItem> queue = new ArrayQueue();
+        private PlayButtons buttons;
 
         public Player() {
                 gui();
@@ -107,7 +111,15 @@ public class Player extends javax.swing.JFrame {
                 playButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("play.png"))); // NOI18N
                 playButton.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
-                                playButtonMouseClicked(evt);
+                                try{
+                                        playButtonMouseClicked(evt);
+                                }catch (LineUnavailableException e){
+                                        e.fillInStackTrace();
+                                }catch(IOException e){
+                                        e.fillInStackTrace();
+                                }catch (UnsupportedAudioFileException e){
+                                        e.fillInStackTrace();
+                                }
                         }
                 });
 
@@ -121,7 +133,15 @@ public class Player extends javax.swing.JFrame {
                 nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("next.png"))); // NOI18N
                 nextButton.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
-                                nextButtonMouseClicked(evt);
+                                try{
+                                        nextButtonMouseClicked(evt);
+                                }catch (UnsupportedAudioFileException e){
+                                        e.fillInStackTrace();
+                                }catch(IOException e){
+                                        e.fillInStackTrace();
+                                }catch (LineUnavailableException e){
+                                        e.fillInStackTrace();
+                                }
                         }
                 });
 
@@ -131,7 +151,16 @@ public class Player extends javax.swing.JFrame {
                 addButton.setPreferredSize(new java.awt.Dimension(100, 100));
                 addButton.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
-                                addButtonMouseClicked(evt);
+                                try{
+                                        addButtonMouseClicked(evt);
+                                }catch(UnsupportedAudioFileException e){
+                                        e.fillInStackTrace();
+                                }catch(IOException e ){
+                                        e.fillInStackTrace();
+
+                                }catch (LineUnavailableException e){
+                                        e.fillInStackTrace();
+                                }
                         }
                 });
 
@@ -190,7 +219,15 @@ public class Player extends javax.swing.JFrame {
                 settingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("settings.png"))); // NOI18N
                 settingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
-                                settingsButtonMouseClicked(evt);
+                                try{
+                                        settingsButtonMouseClicked(evt);
+                                }catch(UnsupportedAudioFileException e){
+                                        e.fillInStackTrace();
+                                }catch(IOException e){
+                                        e.fillInStackTrace();
+                                }catch (LineUnavailableException e){
+                                        e.fillInStackTrace();
+                                }
                         }
                 });
 
@@ -487,24 +524,30 @@ public class Player extends javax.swing.JFrame {
                 // </editor-fold>//GEN-END:initComponen
         }
 
-        private void playButtonMouseClicked(java.awt.event.MouseEvent evt) {
+        private void playButtonMouseClicked(java.awt.event.MouseEvent evt)throws UnsupportedAudioFileException, IOException, LineUnavailableException,IOException {
                 // TODO add your handling code here:
+                //buttons.play();
+                buttons.play();
         }
 
         private void stopButtonMouseClicked(java.awt.event.MouseEvent evt) {
                 // TODO add your handling code here:
+                buttons.stop();
         }
 
         private void pauseButtonMouseClicked(java.awt.event.MouseEvent evt) {
                 // TODO add your handling code here:
+                buttons.pause();
         }
 
-        private void nextButtonMouseClicked(java.awt.event.MouseEvent evt) {
+        private void nextButtonMouseClicked(java.awt.event.MouseEvent evt)throws UnsupportedAudioFileException,IOException, LineUnavailableException {
                 // TODO add your handling code here:
+                buttons.next();
         }
 
-        private void addButtonMouseClicked(java.awt.event.MouseEvent evt) {
-                adding(folder);
+        private void addButtonMouseClicked(java.awt.event.MouseEvent evt)throws UnsupportedAudioFileException,IOException, LineUnavailableException {
+                //TODO buttons.add();
+                buttons = new PlayButtons();
         }
 
         private void sortSongButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -519,8 +562,9 @@ public class Player extends javax.swing.JFrame {
                 // TODO add your handling code here:
         }
 
-        private void settingsButtonMouseClicked(java.awt.event.MouseEvent evt) {
+        private void settingsButtonMouseClicked(java.awt.event.MouseEvent evt)throws UnsupportedAudioFileException,IOException, LineUnavailableException {
                 // TODO add your handling code here:
+                adding(folder);
         }
 
         private void offButtonMouseClicked(java.awt.event.MouseEvent evt) {
@@ -547,8 +591,9 @@ public class Player extends javax.swing.JFrame {
                                 
                                 musicItem = new PlayerItem(file);
                                 musicListBox.append(musicItem.getArtist()+" "+ musicItem.getName()+" "+musicItem.getTime()+ "\n");
+                                addedList.add(musicItem);
+                                queue.enqueue(musicItem);
                                 
-                                //addedList.add();
 
                         }
                 }
