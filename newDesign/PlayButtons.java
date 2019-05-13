@@ -15,12 +15,11 @@ PlayButtons()throws UnsupportedAudioFileException,IOException, LineUnavailableEx
     { 
         adding(new File(filePath));
         audioInputStream =  
-                AudioSystem.getAudioInputStream(new File("/home/fredrik/FRAKMusic/Music/Deafkev-Invincible.wav")); 
+                AudioSystem.getAudioInputStream(new File("/home/fredrik/FRAKMusic/Music/"+songlist.dequeue().getFilename())); 
         
         // create clip reference 
         clip = AudioSystem.getClip();
         clip.open(audioInputStream);
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
     } 
 }   
 public void play()throws LineUnavailableException,IOException{
@@ -45,16 +44,16 @@ public void stop(){
 }
 public void next()throws UnsupportedAudioFileException,IOException, LineUnavailableException{
     clip.stop();
+    clip.close();
     PlayerItem remove = songlist.dequeue();
     audioInputStream =  
     AudioSystem.getAudioInputStream(new File("/home/fredrik/FRAKMusic/Music/"+remove.getFilename()).getAbsoluteFile()); 
     clip.open(audioInputStream);
-    clip.loop(Clip.LOOP_CONTINUOUSLY);
     clip.start();
 
 }
 public void add(PlayerItem next){
-    //songlist.enqueue(next);
+    songlist.enqueue(next);
 }
 public void adding(final File source) {
                 final File[] listOfFiles = source.listFiles();
