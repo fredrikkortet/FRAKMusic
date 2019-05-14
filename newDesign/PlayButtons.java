@@ -6,31 +6,25 @@ public class PlayButtons{
     Long currentFrame; 
     Clip clip; 
     String status; 
-    ArrayQueue<PlayerItem> songlist;  
+    ArrayQueue<PlayerItem> songlist = new ArrayQueue();  
     AudioInputStream audioInputStream; 
-    static String filePath; 
+    static String filePath = "/home/fredrik/FRAKMusic/Music";
 
-PlayButtons(ArrayQueue playlist)throws UnsupportedAudioFileException,IOException, LineUnavailableException
+PlayButtons()throws UnsupportedAudioFileException,IOException, LineUnavailableException
 {  
     { 
-        songlist = playlist;
-        PlayerItem remove = songlist.dequeue();
-        // create AudioInputStream object 
+        adding(new File(filePath));
         audioInputStream =  
-                AudioSystem.getAudioInputStream(new File("/home/fredrik/FRAKMusic/Music/"+remove.getFilename()).getAbsoluteFile()); 
+                AudioSystem.getAudioInputStream(new File("/home/fredrik/FRAKMusic/Music/"+songlist.dequeue().getFilename())); 
         
         // create clip reference 
-        clip = AudioSystem.getClip(); 
-        
-        // open audioInputStream to the clip 
-        clip.open(audioInputStream); 
-        
-        clip.loop(Clip.LOOP_CONTINUOUSLY); 
+        clip = AudioSystem.getClip();
+        clip.open(audioInputStream);
     } 
 }   
-public void play(){
-clip.start();
-status ="play";
+public void play()throws LineUnavailableException,IOException{
+    clip.start();
+    status ="play";
 }
 public void pause(){
     if (status.equals("paused"))  
@@ -48,16 +42,32 @@ public void stop(){
         clip.stop(); 
         clip.close(); 
 }
-public void next(){
+public void next()throws UnsupportedAudioFileException,IOException, LineUnavailableException{
     clip.stop();
+    clip.close();
     PlayerItem remove = songlist.dequeue();
     audioInputStream =  
     AudioSystem.getAudioInputStream(new File("/home/fredrik/FRAKMusic/Music/"+remove.getFilename()).getAbsoluteFile()); 
-    clip.play();
+    clip.open(audioInputStream);
+    clip.start();
 
 }
-public void add(){
-    songlist.enqueue();
+public void add(PlayerItem next){
+    songlist.enqueue(next);
 }
-    
+public void adding(final File source) {
+                final File[] listOfFiles = source.listFiles();
+
+                for (File file : listOfFiles) {
+                        if (file.isDirectory()) {
+                                adding(file);
+                        } else {
+                                
+                                PlayerItem musicItem = new PlayerItem(file);
+                                songlist.enqueue(musicItem);
+                                
+
+                        }
+                }
+        }
 }

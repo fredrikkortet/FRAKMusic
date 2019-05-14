@@ -12,7 +12,7 @@ public class PlayerItem {
 	public PlayerItem(File file) {
 		filename = file.getName();
 		String[] getSongorAuthor = {"0","0"};
-		getSongorAuthor = filename.split("-");
+		getSongorAuthor = filename.split("[-.]");
 		artist = getSongorAuthor[0];
 		name = getSongorAuthor[1];
 		time = getDuration(file);
@@ -65,7 +65,7 @@ public class PlayerItem {
 		long frames = audioInputStream.getFrameLength();
 		double durationInSeconds = (frames+0.0) / format.getFrameRate(); 
 		int durationInSeconds2 = (int)durationInSeconds;
-		String sec = durationInSeconds2/60.0 +"";
+		String sec = durationInSeconds2/60 +":"+(int)durationInSeconds%60;
 		
 		return sec; 
 		}catch(UnsupportedAudioFileException e){

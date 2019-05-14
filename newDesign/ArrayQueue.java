@@ -38,8 +38,8 @@ public class ArrayQueue<AnyType> {
 	 * @param x the item to insert.
 	 */
 	public void enqueue(AnyType x) {
-		if (currentSize == theArray.length)
-			doubleQueue();
+		if (currentSize == theArray.length){
+			doubleQueue();}
 		back = increment(back);
 		theArray[back] = x;
 		currentSize++;
