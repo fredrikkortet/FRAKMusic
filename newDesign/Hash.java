@@ -11,11 +11,11 @@ public class Hash<PlayerItem>{
     public int size(){
         return currentSize;
     }
-    public PlayerItem findMatch(String x){
+    public Object findMatch(String x){
         int currentPos = findPos(x);
 
         if(isActive(array, currentPos)){
-            return (PlayerItem) array[currentPos];
+            return array[currentPos];
         }
         return null;
     }

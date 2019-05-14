@@ -35,29 +35,6 @@ public class PlayerItem {
 		return time;
 	}
 	
-    public int compareName(String other) {
-    	return name.compareTo(other);
-    }
-
-	public int compareArtist(String other) {
-		return artist.compareTo(other);
-	}
-	    
-	public int compareFilename(String other) {
-		return filename.compareTo(other);
-	}
-	    
-	/*public int compareTime(int other) {
-		if(time > other) {
-			return 1;
-		}
-		else if(time < other) {
-			return -1;
-		}
-		else {
-			return 0;
-		}
-	}*/
 	private static String getDuration(File file){
 		try{
 		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);

@@ -8,14 +8,15 @@ public class PlayButtons{
     String status; 
     ArrayQueue<PlayerItem> songlist = new ArrayQueue();  
     AudioInputStream audioInputStream; 
-    static String filePath = "/home/fredrik/FRAKMusic/Music";
-
+    static String filePath = "C:\\Users\\PC\\Documents\\Högskolan i Halmstad\\Algoritmer och Datastrukturer\\FRAKMusic\\Music";
+    static String path = "C:\\\\Users\\\\PC\\\\Documents\\\\Högskolan i Halmstad\\\\Algoritmer och Datastrukturer\\\\FRAKMusic\\\\Music\\";
+    
 PlayButtons()throws UnsupportedAudioFileException,IOException, LineUnavailableException
 {  
     { 
         adding(new File(filePath));
         audioInputStream =  
-                AudioSystem.getAudioInputStream(new File("/home/fredrik/FRAKMusic/Music/"+songlist.dequeue().getFilename())); 
+                AudioSystem.getAudioInputStream(new File(path+songlist.dequeue().getFilename())); 
         
         // create clip reference 
         clip = AudioSystem.getClip();
@@ -47,7 +48,7 @@ public void next()throws UnsupportedAudioFileException,IOException, LineUnavaila
     clip.close();
     PlayerItem remove = songlist.dequeue();
     audioInputStream =  
-    AudioSystem.getAudioInputStream(new File("/home/fredrik/FRAKMusic/Music/"+remove.getFilename()).getAbsoluteFile()); 
+    AudioSystem.getAudioInputStream(new File(path+remove.getFilename()).getAbsoluteFile()); 
     clip.open(audioInputStream);
     clip.start();
 
@@ -70,4 +71,12 @@ public void adding(final File source) {
                         }
                 }
         }
+public void search(PlayerItem song)throws UnsupportedAudioFileException,IOException, LineUnavailableException {
+	clip.stop();
+    clip.close();
+    audioInputStream = 
+    AudioSystem.getAudioInputStream(new File(path+song.getFilename()).getAbsoluteFile()); 
+    clip.open(audioInputStream);
+    clip.start();
+	}
 }
