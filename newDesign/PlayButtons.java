@@ -8,8 +8,8 @@ public class PlayButtons{
     String status; 
     ArrayQueue<PlayerItem> songlist = new ArrayQueue();  
     AudioInputStream audioInputStream; 
-    static String filePath = "C:\\Users\\PC\\Documents\\Högskolan i Halmstad\\Algoritmer och Datastrukturer\\FRAKMusic\\Music";
-    static String path = "C:\\\\Users\\\\PC\\\\Documents\\\\Högskolan i Halmstad\\\\Algoritmer och Datastrukturer\\\\FRAKMusic\\\\Music\\";
+    static String filePath = "/home/fredrik/FRAKMusic/Music";
+    static String path = "/home/fredrik/FRAKMusic/Music/";
     
 PlayButtons()throws UnsupportedAudioFileException,IOException, LineUnavailableException
 {  

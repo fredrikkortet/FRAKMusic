@@ -48,7 +48,7 @@ public class Player extends javax.swing.JFrame {
         private javax.swing.JButton sortArtistButton;
         private javax.swing.JButton sortSongButton;
         private javax.swing.JLabel stopButton;
-        final static File folder = new File("C:\\Users\\PC\\Documents\\Högskolan i Halmstad\\Algoritmer och Datastrukturer\\FRAKMusic\\Music");
+        final static File folder = new File("/home/fredrik/FRAKMusic/Music");
         private Hash addedList = new Hash();
         private PlayerItem musicItem;
         private ArrayQueue<PlayerItem> queue = new ArrayQueue();
