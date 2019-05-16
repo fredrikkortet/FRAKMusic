@@ -556,6 +556,7 @@ public class Player extends javax.swing.JFrame {
         private void addButtonMouseClicked(java.awt.event.MouseEvent evt)throws UnsupportedAudioFileException,IOException, LineUnavailableException {
                 //TODO buttons.add();
                 buttons = new PlayButtons();
+                
         }
 
         private void sortSongButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -568,7 +569,8 @@ public class Player extends javax.swing.JFrame {
 
         private void searchButtonActionPerformed(java.awt.event.ActionEvent evt)throws UnsupportedAudioFileException,IOException, LineUnavailableException {
                 // TODO add your handling code here:
-        		String name = searchField.getText();
+                        String name = searchField.getText();
+                        System.out.print(name);
         		search(name);
         }
 
@@ -609,7 +611,7 @@ public class Player extends javax.swing.JFrame {
                 }
         }
         public void search(String file) throws UnsupportedAudioFileException,IOException, LineUnavailableException{
-        	PlayerItem song = (PlayerItem)addedList.findMatch(file);
+                PlayerItem song = addedList.findMatch(file);
         	buttons.search(song);
         }
 

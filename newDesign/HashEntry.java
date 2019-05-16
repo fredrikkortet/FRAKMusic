@@ -1,4 +1,4 @@
-public class HashEntry<PlayerItem> {
+public class HashEntry {
     public PlayerItem element; // the element
     public boolean isActive; // false if marked deleted
 

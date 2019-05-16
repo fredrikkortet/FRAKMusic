@@ -1,9 +1,10 @@
 
-public class Hash<PlayerItem>{
+public class Hash{
     private static final int defaultSize = 53;
     private HashEntry[] array;
     private int currentSize = 0;
     private int stockInSize = 0;
+    private PlayerItem temp;
 
     public Hash(){
         array = new HashEntry[defaultSize];
@@ -11,22 +12,24 @@ public class Hash<PlayerItem>{
     public int size(){
         return currentSize;
     }
-    public Object findMatch(String x){
+    public PlayerItem findMatch(String x){
         int currentPos = findPos(x);
 
         if(isActive(array, currentPos)){
-            return array[currentPos];
+            return array[currentPos].element;
+        }else {
+            throw new IndexOutOfBoundsException("Index " + x + " is out of bounds!");
         }
-        return null;
+        
     }
-    public boolean anythingthere(Object x){
+    public boolean anythingthere(String x){
         return isActive(array, findPos(x));
     }
     private static boolean isActive(HashEntry[]arr, int pos){
         return arr[pos] != null && arr[pos].isActive;
     }
     public PlayerItem add(PlayerItem value){
-        int currentPos = findPos(value);
+        int currentPos = findPos(value.getName());
         if(isActive(array, currentPos)){
             return null;
         }
@@ -56,7 +59,7 @@ public class Hash<PlayerItem>{
             }
         }
     }
-    public boolean remove(Object x) {
+    public boolean remove(String x) {
         int currentPos = findPos(x);
         if (!isActive(array, currentPos))
             return false;
@@ -69,15 +72,17 @@ public class Hash<PlayerItem>{
 
         return true;
     }
-    private int findPos(Object x) {
+    private int findPos(String x) {
         int offset = 1;
         int currentPos = (x == null) ? 0 : Math.abs(x.hashCode() % array.length);
 
         while (array[currentPos] != null) {
+            PlayerItem fre = array[currentPos].getelement();
+            String hord = fre.getName();
             if (x == null) {
-                if (array[currentPos].element == null)
+                if (hord == null)
                     break;
-            } else if (x.equals(array[currentPos].element))
+            } else if (x.equals(hord))
                 break;
 
             currentPos += offset; // Compute ith probe
