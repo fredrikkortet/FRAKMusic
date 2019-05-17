@@ -62,7 +62,7 @@ public void stop(){
         clip.close(); 
 }
 /**
- * 
+ * Method to skip the current song and play the next song in queue
  */
 public void next()throws UnsupportedAudioFileException,IOException, LineUnavailableException{
     clip.stop();
@@ -74,9 +74,17 @@ public void next()throws UnsupportedAudioFileException,IOException, LineUnavaila
     clip.start();
 
 }
+/**
+ * Queue a song to the queuelist
+ * @param next; the song to ge queued
+ */
 public void add(PlayerItem next){
     songlist.enqueue(next);
 }
+/**
+ * Creates a plsylist (adds all songs)
+ * @param source; send in the link to the folder where the musicfiles are located
+ */
 public void adding(final File source) {
                 final File[] listOfFiles = source.listFiles();
 
@@ -92,6 +100,10 @@ public void adding(final File source) {
                         }
                 }
         }
+/**
+ * A method to search for a specific song and play it
+ * @param song; the song to be searched
+ */
 public void search(PlayerItem song)throws UnsupportedAudioFileException,IOException, LineUnavailableException {
 	clip.stop();
     clip.close();
