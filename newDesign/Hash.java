@@ -1,4 +1,8 @@
-
+/**
+ * <h1>Hash.java</h1>
+ * <p>Is a normal hashtable</p>
+ * 
+ */
 public class Hash{
     private static final int defaultSize = 53;
     private HashEntry[] array;
@@ -9,9 +13,18 @@ public class Hash{
     public Hash(){
         array = new HashEntry[defaultSize];
     }
+    /**
+     * show the size
+     * @return the size of the hashtable
+     */
     public int size(){
         return currentSize;
     }
+    /**
+     * find the String you wanted to seach for
+     * @param x
+     * @return
+     */
     public PlayerItem findMatch(String x){
         int currentPos = findPos(x);
 
@@ -22,12 +35,21 @@ public class Hash{
         }
         
     }
-    public boolean anythingthere(String x){
-        return isActive(array, findPos(x));
-    }
+   
+    /**
+     * check if its active
+     * @param arr take the hashEntry array 
+     * @param pos is the possiotn that should be checked
+     * @return true if its somthing there
+     */
     private static boolean isActive(HashEntry[]arr, int pos){
         return arr[pos] != null && arr[pos].isActive;
     }
+    /**
+     * add tho the hashtable
+     * @param value is the value that will add
+     * @return the value you added
+     */
     public PlayerItem add(PlayerItem value){
         int currentPos = findPos(value.getName());
         if(isActive(array, currentPos)){
@@ -46,6 +68,9 @@ public class Hash{
          
         
     }
+    /**
+     * make a new hashtable that is bigger
+     */
     private void rehash() {
         HashEntry[] oldarray = array;
 
@@ -59,6 +84,11 @@ public class Hash{
             }
         }
     }
+    /**
+     * remove form hashtable
+     * @param x
+     * @return return that value you removed
+     */
     public boolean remove(String x) {
         int currentPos = findPos(x);
         if (!isActive(array, currentPos))
@@ -72,6 +102,11 @@ public class Hash{
 
         return true;
     }
+    /**
+     * find your position if you try to find right side.
+     * @param x is the word that make a key and find postion
+     * @return return a position
+     */
     private int findPos(String x) {
         int offset = 1;
         int currentPos = (x == null) ? 0 : Math.abs(x.hashCode() % array.length);
@@ -95,7 +130,7 @@ public class Hash{
     }
 
     /**
-     * Internal method to find a prime number at least as large as n.
+     * find next prime form the value you put in
      * 
      * @param n the starting number (must be positive).
      * @return a prime number larger than or equal to n.
@@ -111,7 +146,7 @@ public class Hash{
     }
 
     /**
-     * Internal method to test if a number is prime. Not an efficient algorithm.
+     * check if its a prime so we can know if its legal
      * 
      * @param n the number to test.
      * @return the result of the test.

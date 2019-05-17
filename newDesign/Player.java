@@ -532,7 +532,14 @@ public class Player extends javax.swing.JFrame {
                 pack();
                 // </editor-fold>//GEN-END:initComponen
         }
-
+/**
+ * this part of the code is to sense when a button is pressed on the gui
+ * @param evt
+ * @throws UnsupportedAudioFileException
+ * @throws IOException
+ * @throws LineUnavailableException
+ * @throws IOException
+ */
         private void playButtonMouseClicked(java.awt.event.MouseEvent evt)throws UnsupportedAudioFileException, IOException, LineUnavailableException,IOException {
                 // TODO add your handling code here:
                 buttons.play();
@@ -610,6 +617,13 @@ public class Player extends javax.swing.JFrame {
                         }
                 }
         }
+        /**
+         * Search in hashtable
+         * @param file
+         * @throws UnsupportedAudioFileException
+         * @throws IOException
+         * @throws LineUnavailableException
+         */
         public void search(String file) throws UnsupportedAudioFileException,IOException, LineUnavailableException{
                 PlayerItem song = addedList.findMatch(file);
         	buttons.search(song);
