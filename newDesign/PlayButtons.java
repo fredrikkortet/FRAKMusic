@@ -1,7 +1,16 @@
 import javax.sound.sampled.*;
 import java.io.*;
 import java.util.*;
-
+/**
+ * <h1>Player.java</h1>
+ * <p>
+ * This class creates methods for the Player to play the playlist which also creates here
+ * </p>
+ * 
+ * @author Andre Frisk, Fredrik Kortetjarvi, Kristoffer Guachalla, Rohullah
+ *         Khorami
+ * @version 1.0
+ */
 public class PlayButtons{
     Long currentFrame; 
     Clip clip; 
@@ -23,10 +32,16 @@ PlayButtons()throws UnsupportedAudioFileException,IOException, LineUnavailableEx
         clip.open(audioInputStream);
     } 
 }   
+/**
+ * The method to start the song
+ */
 public void play()throws LineUnavailableException,IOException{
     clip.start();
     status ="play";
 }
+/**
+ * The method to pause the song
+ */
 public void pause(){
     if (status.equals("paused"))  
         { 
@@ -38,11 +53,17 @@ public void pause(){
         clip.stop(); 
         status = "paused"; 
 }
+/**
+ * The method to stop the playlist from playing
+ */
 public void stop(){
     currentFrame = 0L; 
         clip.stop(); 
         clip.close(); 
 }
+/**
+ * 
+ */
 public void next()throws UnsupportedAudioFileException,IOException, LineUnavailableException{
     clip.stop();
     clip.close();
