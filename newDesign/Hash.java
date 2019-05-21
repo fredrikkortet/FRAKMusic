@@ -31,7 +31,8 @@ public class Hash{
         if(isActive(array, currentPos)){
             return array[currentPos].element;
         }else {
-            throw new IndexOutOfBoundsException("Index " + x + " is out of bounds!");
+        	return null;
+            //throw new IndexOutOfBoundsException("Index " + x + " is out of bounds!");
         }
         
     }
@@ -51,6 +52,11 @@ public class Hash{
      * @return the value you added
      */
     public PlayerItem add(PlayerItem value){
+    	if(value == null) {
+    		System.out.print("dont add null");
+    		return null;
+    		
+    	}else {
         int currentPos = findPos(value.getName());
         if(isActive(array, currentPos)){
             return null;
@@ -65,7 +71,7 @@ public class Hash{
             rehash();
         }
         return value;
-         
+    	}
         
     }
     /**
