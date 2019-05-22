@@ -22,8 +22,8 @@ public class Hash{
     }
     /**
      * find the String you wanted to seach for
-     * @param x
-     * @return
+     * @param x Is the value you seek
+     * @return return the value or null
      */
     public PlayerItem findMatch(String x){
         int currentPos = findPos(x);
@@ -92,7 +92,7 @@ public class Hash{
     }
     /**
      * remove form hashtable
-     * @param x
+     * @param x the thing you want to remove 
      * @return return that value you removed
      */
     public boolean remove(String x) {

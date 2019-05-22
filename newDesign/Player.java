@@ -534,11 +534,11 @@ public class Player extends javax.swing.JFrame {
         }
 /**
  * this part of the code is to sense when a button is pressed on the gui
- * @param evt
- * @throws UnsupportedAudioFileException
- * @throws IOException
- * @throws LineUnavailableException
- * @throws IOException
+ * @param evt goodle
+ * @throws UnsupportedAudioFileException ??
+ * @throws IOException ??
+ * @throws LineUnavailableException ??
+ * @throws IOException ??
  */
         private void playButtonMouseClicked(java.awt.event.MouseEvent evt)throws UnsupportedAudioFileException, IOException, LineUnavailableException,IOException {
                 // TODO add your handling code here:
@@ -598,7 +598,7 @@ public class Player extends javax.swing.JFrame {
         /**
          * add the music into the program
          * 
-         * @params source is the map all the music is in.
+         * @param source is the map all the music is in.
          */
         public void adding(final File source) {
                 final File[] listOfFiles = source.listFiles();
@@ -619,10 +619,10 @@ public class Player extends javax.swing.JFrame {
         }
         /**
          * Search in hashtable
-         * @param file
-         * @throws UnsupportedAudioFileException
-         * @throws IOException
-         * @throws LineUnavailableException
+         * @param file is the file that will be added to the hash
+         * @throws UnsupportedAudioFileException if is not a supported audio file
+         * @throws IOException ????
+         * @throws LineUnavailableException ??
          */
         public void search(String file) throws UnsupportedAudioFileException,IOException, LineUnavailableException{
                 PlayerItem song = addedList.findMatch(file);

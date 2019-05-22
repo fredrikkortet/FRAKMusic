@@ -19,7 +19,12 @@ public class PlayButtons{
     AudioInputStream audioInputStream; 
     static String filePath = "/home/fredrik/FRAKMusic/Music";
     static String path = "/home/fredrik/FRAKMusic/Music/";
-    
+    /**
+     * 
+     * @throws UnsupportedAudioFileException ??
+     * @throws IOException ??
+     * @throws LineUnavailableException ??
+     */
 PlayButtons()throws UnsupportedAudioFileException,IOException, LineUnavailableException
 {  
     { 
@@ -34,6 +39,8 @@ PlayButtons()throws UnsupportedAudioFileException,IOException, LineUnavailableEx
 }   
 /**
  * The method to start the song
+ * @throws LineUnavailableException ??
+ * @throws IOException ??
  */
 public void play()throws LineUnavailableException,IOException{
     clip.start();
@@ -62,7 +69,10 @@ public void stop(){
         clip.close(); 
 }
 /**
- * Method to skip the current song and play the next song in queue
+ * play the next song 
+ * @throws UnsupportedAudioFileException ??
+ * @throws IOException ??
+ * @throws LineUnavailableException ??
  */
 public void next()throws UnsupportedAudioFileException,IOException, LineUnavailableException{
     clip.stop();
@@ -103,6 +113,9 @@ public void adding(final File source) {
 /**
  * A method to search for a specific song and play it
  * @param song; the song to be searched
+ * @throws UnsupportedAudioFileException ??
+ * @throws IOException ??
+ * @throws LineUnavailableException ??
  */
 public void search(PlayerItem song)throws UnsupportedAudioFileException,IOException, LineUnavailableException {
 	clip.stop();

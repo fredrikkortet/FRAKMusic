@@ -1,3 +1,11 @@
+/**
+ * <h1>ArrayQueue.java</h1>
+ * <p>
+ * is the array in a queue 
+ * </p>
+ * @author fredrik
+ *
+ */
 public class ArrayQueue<AnyType> {
 	private AnyType[] theArray;
 	private int currentSize;
